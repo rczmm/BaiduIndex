@@ -30,15 +30,14 @@
     python main.py
     ```
 
-2. 取消# save_sql(get_search_index_demo(keywords_list))语句，就可以爬取关键词信息
+2. save_sql(get_search_index_demo(keywords_list))爬取关键词信息
 3. 在spider目录下，可以爬取需求图谱与人群分布的信息
-4. 在charts目录下，可以生成个类图片
+4. 在charts目录下，可以生成可视化界面
 5. 界面引入了QSS，可自行更换
+6. 在spider下的GetData文件中可选择更改数据的时间范围
 
 ## 注意事项
 
 - 本项目仅供学习和研究使用，不得用于商业用途。
 - 使用前请确保遵守百度指数数据的使用条款和规定。
 - 如有任何问题或建议，欢迎在项目的 Issues 页面提出。
-
-

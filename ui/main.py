@@ -8,6 +8,7 @@ import sys
 
 from PyQt6 import QtCore, QtWidgets
 from PyQt6 import QtWebEngineWidgets
+from PyQt6.QtWidgets import QPushButton
 from qt_material import apply_stylesheet
 
 
@@ -21,7 +22,7 @@ class Ui_MainWindow(object):
 
         self.webEngineView = QtWebEngineWidgets.QWebEngineView(parent=self.centralwidget)
         self.webEngineView.setGeometry(QtCore.QRect(130, 0, 910, 600))
-        self.webEngineView.setUrl(QtCore.QUrl("file:///E:/home/BaiduIndex/pythonProject1/html/lineChartsCurrent.html"))
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/lineChartsCurrent.html"))
         self.webEngineView.setObjectName("webEngineView")
 
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
@@ -61,6 +62,17 @@ class Ui_MainWindow(object):
         self.pushButton_6.clicked.connect(self.on_button_6_clicked)
         self.verticalLayout.addWidget(self.pushButton_6)
 
+        self.pushButton_7 = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
+        self.pushButton_7.setObjectName("pushButton_3")
+        self.pushButton_7.clicked.connect(self.on_button_7_clicked)
+        self.verticalLayout.addWidget(self.pushButton_7)
+
+        self.button = QPushButton("Refresh")
+        self.button.clicked.connect(self.webEngineView.reload)
+        self.verticalLayout.addWidget(self.button)
+        # 添加一个刷新的按钮，这个按钮点击后会刷新所有的子元素
+
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
@@ -79,23 +91,28 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "词云统计"))
         self.pushButton_5.setText(_translate("MainWindow", "需求图谱——性别"))
         self.pushButton_6.setText(_translate("MainWindow", "需求图谱——年龄"))
+        self.pushButton_7.setText(_translate("MainWindow", "需求——领域"))
 
     def on_button_1_clicked(self):
-        self.webEngineView.setUrl(QtCore.QUrl("file:///E:/home/BaiduIndex/pythonProject1/html/lineChartsCurrent.html"))
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/lineChartsCurrent.html"))
 
     def on_button_2_clicked(self):
-        self.webEngineView.setUrl(QtCore.QUrl("file:///E:/home/BaiduIndex/pythonProject1/html/BarCharts.html"))
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/BarCharts.html"))
 
     def on_button_3_clicked(self):
-        self.webEngineView.setUrl(QtCore.QUrl("file:///E:/home/BaiduIndex/pythonProject1/html/MapCharts.html"))
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/MapCharts.html"))
 
     def on_button_4_clicked(self):
-        self.webEngineView.setUrl(QtCore.QUrl("file:///E:/home/BaiduIndex/pythonProject1/html/wordCloudCharts.html"))
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/wordCloudCharts.html"))
 
     def on_button_5_clicked(self):
-        self.webEngineView.setUrl(QtCore.QUrl("file:///E:/home/BaiduIndex/pythonProject1/html/PieCharts.html"))
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/PieCharts.html"))
     def on_button_6_clicked(self):
-        self.webEngineView.setUrl(QtCore.QUrl("file:///E:/home/BaiduIndex/pythonProject1/html/BarAgeCharts.html"))
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/BarAgeCharts.html"))
+
+    def on_button_7_clicked(self):
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/RadarCharts.html"))
+
 
 
 def main():
