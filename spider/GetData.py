@@ -2,6 +2,7 @@ from .SearchApi import seachApi
 from .SocialApi import socialApi
 from .WordGraph import wordGraph
 from .SocialApiInterest import socailApiInterest
+from .FeedSpider import FeedApi
 
 def get_data():
     start_date = '2019-01-01'
@@ -10,3 +11,5 @@ def get_data():
     seachApi(start_date,end_date)
     socialApi()
     socailApiInterest()
+    FeedApi()
+

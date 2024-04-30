@@ -67,10 +67,16 @@ class Ui_MainWindow(object):
         self.pushButton_7.clicked.connect(self.on_button_7_clicked)
         self.verticalLayout.addWidget(self.pushButton_7)
 
+        # 添加一个刷新的按钮，这个按钮点击后会刷新所有的子元素
         self.button = QPushButton("Refresh")
         self.button.clicked.connect(self.webEngineView.reload)
         self.verticalLayout.addWidget(self.button)
-        # 添加一个刷新的按钮，这个按钮点击后会刷新所有的子元素
+
+        self.pushButton_8 = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
+        self.pushButton_8.setObjectName("pushButton_3")
+        self.pushButton_8.clicked.connect(self.on_button_8_clicked)
+        self.verticalLayout.addWidget(self.pushButton_8)
+
 
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -85,13 +91,14 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "主页"))
-        self.pushButton_1.setText(_translate("MainWindow", "关键词变化"))
+        self.pushButton_1.setText(_translate("MainWindow", "搜索指数"))
         self.pushButton_2.setText(_translate("MainWindow", "需求图谱——领域"))
         self.pushButton_3.setText(_translate("MainWindow", "人群分布——地区"))
         self.pushButton_4.setText(_translate("MainWindow", "词云统计"))
         self.pushButton_5.setText(_translate("MainWindow", "需求图谱——性别"))
         self.pushButton_6.setText(_translate("MainWindow", "需求图谱——年龄"))
         self.pushButton_7.setText(_translate("MainWindow", "需求——领域"))
+        self.pushButton_8.setText(_translate("MainWindow", "资讯指数"))
 
     def on_button_1_clicked(self):
         self.webEngineView.setUrl(QtCore.QUrl("file:///../html/lineChartsCurrent.html"))
@@ -112,6 +119,8 @@ class Ui_MainWindow(object):
 
     def on_button_7_clicked(self):
         self.webEngineView.setUrl(QtCore.QUrl("file:///../html/RadarCharts.html"))
+    def on_button_8_clicked(self):
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/AQICharts.html"))
 
 
 
