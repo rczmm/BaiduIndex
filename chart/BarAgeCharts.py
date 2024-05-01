@@ -6,7 +6,7 @@ from pyecharts.charts import Timeline, Line, Bar
 from qdata.sql import utilSql
 
 # 定义一个函数，用于生成柱状图和折线图的时间线页面
-def bar_age_charts():
+def bar_age_charts(old_styles, new_styles):
     # 使用 MySQL 数据库的 cursor_mysql 对象执行以下 SQL 语句，获取词云图中使用的词列表
     utilSql.cursor_mysql.execute("""
         SELECT word FROM personchartlike GROUP BY word
@@ -67,6 +67,7 @@ def bar_age_charts():
     # 打开生成的 HTML 文件，并将其中的 https://assets.pyecharts.org/assets/v5 路径替换为 ../js
     with open(path, "r", encoding="utf-8") as f:
         data = f.read()
-        data = data.replace('https://assets.pyecharts.org/assets/v5', '../js')
+        for old_style, new_style in zip(old_styles, new_styles):
+            data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)

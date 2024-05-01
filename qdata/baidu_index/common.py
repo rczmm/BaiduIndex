@@ -13,9 +13,9 @@ import requests
 # pylint: disable=line-too-long
 headers = {
     'Host': 'index.baidu.com',
-    'Connection': 'keep-alive',
-    'X-Requested-With': 'XMLHttpRequest',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+    # 'Connection': 'keep-alive',
+    # 'X-Requested-With': 'XMLHttpRequest',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
 }
 
 
@@ -129,7 +129,7 @@ def get_encrypt_json(
         'search': 'http://index.baidu.com/api/SearchApi/index?',
         'live': 'http://index.baidu.com/api/LiveApi/getLive?',
         'news': 'http://index.baidu.com/api/NewsApi/getNewsIndex?',
-        'feed': 'http://index.baidu.com/api/FeedSearchApi/getFeedIndex?'
+        'feed': 'https://index.baidu.com/api/FeedSearchApi/getFeedIndex?'
     }
 
     pre_url = pre_url_map[type]

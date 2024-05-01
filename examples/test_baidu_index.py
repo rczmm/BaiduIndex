@@ -1,3 +1,7 @@
+import datetime
+import random
+import time
+
 from qdata.baidu_index import (
     get_feed_index,
     get_news_index,
@@ -12,29 +16,33 @@ from qdata.sql import utilSql
 
 class BaiduIndex:
     keywords_list = []
-    cookies = cookies[2]
+    cookies = cookies[7]
 
     def test_get_feed_index(self):
-        self.keywords_list = self.keywords_list[0:1]
         utilSql.cursor_mysql.execute("""
         create table if not exists feed_index(
             keyword varchar(100) not null,
             date varchar(255) not null,
             value float not null);
         """)
-        """获取资讯指数"""
-        for index in get_feed_index(
-                keywords_list=self.keywords_list,
-                start_date='2019-01-01',
-                end_date='2019-01-02',
-                cookies=self.cookies
-        ):
-            print(index)
-            utilSql.cursor_mysql.execute(
-                """
-                insert into feed_index(keyword, date, value) values(%s, %s, %s)
-                """,(index['keyword'], index["date"], index["index"])
-            )
+        self.keywords_list = self.keywords_list[5:-1]
+        for key in self.keywords_list:
+            """获取资讯指数"""
+            for index in get_feed_index(
+                    keywords_list=[key],
+                    start_date=str(datetime.date.today() - datetime.timedelta(days=30)),
+                    end_date=str(datetime.date.today()),
+                    cookies=self.cookies
+            ):
+                print(index)
+                utilSql.cursor_mysql.execute(
+                    """
+                    insert into feed_index(keyword, date, value) values(%s, %s, %s)
+                    """,(index['keyword'], index["date"], index["index"])
+                )
+                print("开始插入！")
+            time.sleep(random.randint(1, 5))
+            utilSql.conn_mysql.commit()
 
     def test_get_news_index(self):
         """获取媒体指数"""

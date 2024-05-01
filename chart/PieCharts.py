@@ -5,7 +5,7 @@ from qdata.sql import utilSql
 from pyecharts.charts import Pie, Grid, Timeline
 from pyecharts import options as opts
 
-def pie_chart():
+def pie_chart(old_styles, new_styles):
     # 使用 utilSql 工具类执行 SQL 查询，获取词云图需要的数据
     utilSql.cursor_mysql.execute("""
     SELECT word FROM personchartgender GROUP BY word
@@ -62,6 +62,7 @@ def pie_chart():
     # 打开生成的 HTML 文件，并将其中的 https://assets.pyecharts.org/assets/v5 路径替换为 ../js
     with open(path, "r", encoding="utf-8") as f:
         data = f.read()
-        data = data.replace('https://assets.pyecharts.org/assets/v5', '../js')
+        for old_style, new_style in zip(old_styles, new_styles):
+            data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)

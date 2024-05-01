@@ -9,7 +9,7 @@ from pyecharts import options as opts
 from qdata.sql import utilSql
 
 
-def radar_chart():
+def radar_chart(old_styles, new_styles):
     page = Timeline()
 
     # 3. 定义一个 utilSql 类，用于执行 MySQL 查询
@@ -58,6 +58,7 @@ def radar_chart():
 
     with open(path, "r", encoding="utf-8") as f:
         data = f.read()
-        data = data.replace('https://assets.pyecharts.org/assets/v5', '../js')
+        for old_style, new_style in zip(old_styles, new_styles):
+            data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)

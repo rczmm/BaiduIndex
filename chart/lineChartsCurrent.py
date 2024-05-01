@@ -11,7 +11,7 @@ import numpy as np
 from datetime import datetime, timedelta
 
 # 定义一个函数，用于生成折线图
-def line_chart():
+def line_chart(old_styles, new_styles):
     # 使用 MySQL 数据库查询 keywords 表中的所有关键词，并将其保存在一个列表中
     utilSql.cursor_mysql.execute("""
         SELECT keyword FROM keywords GROUP BY keyword
@@ -79,9 +79,11 @@ def line_chart():
     # 使用折线图生成器创建折线图，并添加到列表中
     line = (
         pyecharts.charts.Line()
-        .set_global_opts(title_opts=opts.TitleOpts(title='指数变化'),
+        .set_global_opts(title_opts=opts.TitleOpts(title='搜索指数'),
                          xaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(interval=0)),
-                         datazoom_opts=opts.DataZoomOpts(is_show=True))
+                         datazoom_opts=opts.DataZoomOpts(),
+                         legend_opts=opts.LegendOpts(pos_left='10%'),
+                         )
         .add_xaxis(xdata)
         .add_yaxis(next(keywords), ydata[0])
         .add_yaxis(next(keywords), ydata[1])
@@ -105,7 +107,8 @@ def line_chart():
     # 打开生成的 HTML 文件，并将其中的 https://assets.pyecharts.org/assets/v5 路径替换为 ../js
     with open(path, "r", encoding="utf-8") as f:
         data = f.read()
-        data = data.replace('https://assets.pyecharts.org/assets/v5', '../js')
+        for old_style, new_style in zip(old_styles, new_styles):
+            data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)
 

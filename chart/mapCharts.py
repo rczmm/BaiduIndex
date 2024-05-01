@@ -9,7 +9,7 @@ from qdata.sql import utilSql
 from qdata.baidu_index.config import PROVINCE_CODE, CITY_CODE, convert_province_name
 
 # 定义一个函数，用于生成地图图表
-def map_chart():
+def map_chart(old_styles, new_styles):
     # 使用 MySQL 数据库连接，查询地区热词
     utilSql.cursor_mysql.execute("""
         SELECT keyword FROM regionchart
@@ -66,11 +66,7 @@ def map_chart():
                 .add(keyword, data_province, 'china')
                 .set_global_opts(
                     title_opts=opts.TitleOpts(title=keyword),
-                    visualmap_opts=opts.VisualMapOpts(
-                        min_=0,
-                        max_=1000,
-                        is_piecewise=True
-                    ),
+                    visualmap_opts=opts.VisualMapOpts(max_=1000, is_piecewise=True),
                 )
             )
 
@@ -87,7 +83,7 @@ def map_chart():
     # 打开生成的 HTML 文件，并将其中的 https://assets.pyecharts.org/assets/v5 路径替换为 ../js
     with open(path, "r", encoding="utf-8") as f:
         data = f.read()
-        data = data.replace('https://assets.pyecharts.org/assets/v5', '../js')
-        data = data.replace('https://assets.pyecharts.org/assets/v5/maps/', '../js/maps_')
+        for old_style, new_style in zip(old_styles, new_styles):
+            data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)
