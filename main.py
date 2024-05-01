@@ -10,7 +10,6 @@ if __name__ == '__main__':
     keywords_list = keywords
     keywords_list = [i.replace('\n', '') for i in keywords_list]
     keywords_list = [i.split(',') for i in keywords_list]
-    print(keywords_list)
     # save_sql(get_search_index_demo(keywords_list))
     # get_data()
     get_charts()
