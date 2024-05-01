@@ -104,6 +104,13 @@ class Ui_MainWindow(object):
         self.pushButton_8.setMinimumWidth(100)
         self.horizontalLayout.addWidget(self.pushButton_8)
 
+        self.pushButton_9 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
+        self.pushButton_9.setObjectName("pushButton_3")
+        self.pushButton_9.clicked.connect(self.on_button_9_clicked)
+        self.pushButton_9.setMinimumHeight(40)
+        self.pushButton_9.setMinimumWidth(100)
+        self.horizontalLayout.addWidget(self.pushButton_9)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -123,6 +130,7 @@ class Ui_MainWindow(object):
         self.pushButton_6.setText(_translate("MainWindow", "人群分布—年龄"))
         self.pushButton_7.setText(_translate("MainWindow", "兴趣分布—TGI"))
         self.pushButton_8.setText(_translate("MainWindow", "资讯关注"))
+        self.pushButton_9.setText(_translate("MainWindow", "兴趣分布—RATE"))
 
 
     def on_button_1_clicked(self):
@@ -149,6 +157,8 @@ class Ui_MainWindow(object):
     def on_button_8_clicked(self):
         self.webEngineView.setUrl(QtCore.QUrl("file:///../html/AQICharts.html"))
 
+    def on_button_9_clicked(self):
+        self.webEngineView.setUrl(QtCore.QUrl("file:///../html/PieChart.html"))
 
 def main():
     import sys

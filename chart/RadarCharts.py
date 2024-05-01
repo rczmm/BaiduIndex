@@ -27,7 +27,7 @@ def radar_chart(old_styles, new_styles):
     for keyword in keywords:
         utilSql.cursor_mysql.execute(
             """
-            select interest,tgi,rate from personchartlike where word = %s and word not like %s
+            select interest,tgi from personchartlike where word = %s and word not like %s
             """, (keyword[0], "全网分布%")
         )
         count = utilSql.cursor_mysql.fetchall()

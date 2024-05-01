@@ -1,4 +1,3 @@
-# 这段代码使用 Python 语言编写，主要是为了生成一个基于 pyecharts 的词云图，该词云图使用 MySQL 数据库中的数据。下面是加上中文注释后的代码：
 import os
 
 from qdata.sql import utilSql
