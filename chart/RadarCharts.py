@@ -54,6 +54,10 @@ def radar_chart(old_styles, new_styles):
 
     # 10. 最后，使用 with 语句将生成的 HTML 代码写入文件，并将 pyecharts.org 的资源路径替换为本地路径
     path = os.getcwd() + "/html/RadarCharts.html"
+    page.add_schema(
+        is_auto_play=True,
+        is_timeline_show=False
+    )
     page.render(path)
 
     with open(path, "r", encoding="utf-8") as f:

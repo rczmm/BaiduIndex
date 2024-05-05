@@ -16,7 +16,7 @@ from qdata.sql import utilSql
 
 class BaiduIndex:
     keywords_list = []
-    cookies = cookies[7]
+    cookies = cookies[6]
 
     def test_get_feed_index(self):
         utilSql.cursor_mysql.execute("""

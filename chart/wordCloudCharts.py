@@ -35,8 +35,8 @@ def word_cloud_charts(old_styles, new_styles):
             .add("", data_pair=words, word_size_range=[6, 60],
                  textstyle_opts=opts.TextStyleOpts(font_family="Microsoft YaHei", font_size='bold'))
             .set_global_opts(title_opts=opts.TitleOpts(title="{}新词".format(keyword[0]),
-                                                       title_textstyle_opts=opts.TextStyleOpts(font_size=25,
-                                                                                               color="midnightblue")))
+                                                       title_textstyle_opts=opts.TextStyleOpts(font_size=25,color="blue")
+                                                       ))
         )
         # 将生成的词云图添加到 charts 列表中
         charts.append(wordcloud)
@@ -52,6 +52,10 @@ def word_cloud_charts(old_styles, new_styles):
         )
     # 使用 render 函数将生成的词云图保存为 HTML 文件
     path = os.getcwd() + "/html/wordCloudCharts.html"
+    page.add_schema(
+        is_auto_play=True,
+        is_timeline_show=False
+    )
     page.render(path)
     # 打开生成的 HTML 文件，并将其中的 https://assets.pyecharts.org/assets/v5 路径替换为 ../js
     with open(path, "r", encoding="utf-8") as f:
@@ -60,4 +64,3 @@ def word_cloud_charts(old_styles, new_styles):
             data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)
-

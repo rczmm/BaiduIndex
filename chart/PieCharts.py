@@ -57,6 +57,10 @@ def pie_chart(old_styles, new_styles):
     for chart in charts:
         page.add(chart, time_point="")
     path = os.getcwd() + "/html/pieCharts.html"
+    page.add_schema(
+        is_auto_play=True,
+        is_timeline_show=False
+    )
     page.render(path)
     # 打开生成的 HTML 文件，并将其中的 https://assets.pyecharts.org/assets/v5 路径替换为 ../js
     with open(path, "r", encoding="utf-8") as f:

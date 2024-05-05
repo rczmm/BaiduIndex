@@ -69,6 +69,10 @@ def bar_chart(old_styles,new_styles):
 
     # 最后将生成的柱状图和折线图的时间线保存为 HTML 文件
     current_path = os.getcwd()
+    page.add_schema(
+        is_auto_play=True,
+        is_timeline_show=False
+    )
     page.render(current_path+"/html/BarCharts.html")
 
     path = current_path+"/html/BarCharts.html"
