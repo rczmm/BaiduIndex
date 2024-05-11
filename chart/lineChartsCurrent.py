@@ -10,6 +10,7 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 from datetime import datetime, timedelta
 
+
 # 定义一个函数，用于生成折线图
 def line_chart(old_styles, new_styles):
     # 使用 MySQL 数据库查询 keywords 表中的所有关键词，并将其保存在一个列表中
@@ -93,6 +94,14 @@ def line_chart(old_styles, new_styles):
         .add_yaxis(next(keywords), ydata[5])
         .add_yaxis(next(keywords), ydata[6])
         .add_yaxis(next(keywords), ydata[7])
+        .set_series_opts(markpoint_opts=opts.MarkPointOpts(data=[opts.MarkPointItem(type_="max", name="最大值"),
+                                                                 opts.MarkPointItem(type_="min", name="最小值")])
+                         , markline_opts=opts.MarkLineOpts(data=[opts.MarkLineItem(type_="average", name="平均值")]
+                                                           , linestyle_opts=opts.LineStyleOpts(type_="dashed",
+                                                                                               opacity=0.9,
+                                                                                               color='black')
+                                                           )
+                         )
     )
     # 创建一个页面，用于保存所有折线图
     charts.append(line)
@@ -111,4 +120,3 @@ def line_chart(old_styles, new_styles):
             data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)
-
