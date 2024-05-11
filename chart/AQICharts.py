@@ -4,6 +4,8 @@ import numpy as np
 from qdata.sql import utilSql
 from pyecharts import options as opts
 from pyecharts.charts import Timeline, Line, Bar
+
+
 def aqi_charts(old_styles, new_styles):
     page = Timeline()
     sql = """
@@ -39,7 +41,7 @@ def aqi_charts(old_styles, new_styles):
         line = (
             Line()
             .add_xaxis([item[0] for item in result])
-            .add_yaxis(title,[item[1] for item in result])
+            .add_yaxis(title, [item[1] for item in result])
             .set_global_opts(
                 title_opts=opts.TitleOpts(title=title),
                 tooltip_opts=opts.TooltipOpts(trigger="axis"),
@@ -67,10 +69,9 @@ def aqi_charts(old_styles, new_styles):
                 ),
             )
             .set_series_opts(
-                markline_opts=opts.MarkLineOpts(
-                    data=
-                    [{"yAxis":i} for i in bins]
-                )
+                markline_opts=opts.MarkLineOpts(data=[{"yAxis": i} for i in bins])
+                ,markpoint_opts=opts.MarkPointOpts(data=[opts.MarkPointItem(type_="max", name="最大值"),
+                                                                 opts.MarkPointItem(type_="min", name="最小值")])
             )
         )
         charts.append(line)
@@ -91,5 +92,3 @@ def aqi_charts(old_styles, new_styles):
             data = data.replace(old_style, new_style)
         with open(path, "w", encoding="utf-8") as w:
             w.write(data)
-
-
