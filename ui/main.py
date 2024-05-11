@@ -13,7 +13,7 @@ from qt_material import apply_stylesheet
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1000, 600)
+        MainWindow.resize(1200, 700)
 
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -24,17 +24,23 @@ class Ui_MainWindow(object):
         self.quickWidget.setObjectName("quickWidget")
 
         self.webEngineView = QtWebEngineWidgets.QWebEngineView(parent=self.centralwidget)
-        self.webEngineView.setGeometry(QtCore.QRect(0, 60, 1000, 600))
+        self.webEngineView.setGeometry(QtCore.QRect(0, 60, 1200, 700))
         self.webEngineView.setUrl(QtCore.QUrl("file:///../html/lineChartsCurrent.html"))
         self.webEngineView.setObjectName("webEngineView")
 
         self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1000, 51))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1200, 51))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
 
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
+
+        # 添加一个刷新的按钮，这个按钮点击后会刷新所有的子元素
+        self.button = QPushButton("Refresh")
+        self.button.setStyleSheet("background-color: aquamarine;")
+        self.button.clicked.connect(self.webEngineView.reload)
+        self.horizontalLayout.addWidget(self.button)
 
         self.pushButton_1 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.pushButton_1.setObjectName("pushButton")
@@ -64,7 +70,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.setObjectName("pushButton_3")
         self.pushButton_4.clicked.connect(self.on_button_4_clicked)
         self.pushButton_4.setMinimumHeight(40)
-        self.pushButton_4.setMinimumWidth(100)
+        self.pushButton_4.setMinimumWidth(120)
         self.pushButton_4.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.horizontalLayout.addWidget(self.pushButton_4)
 
@@ -72,14 +78,14 @@ class Ui_MainWindow(object):
         self.pushButton_5.setObjectName("pushButton_3")
         self.pushButton_5.clicked.connect(self.on_button_5_clicked)
         self.pushButton_5.setMinimumHeight(40)
-        self.pushButton_5.setMinimumWidth(100)
+        self.pushButton_5.setMinimumWidth(120)
         self.pushButton_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.horizontalLayout.addWidget(self.pushButton_5)
 
         self.pushButton_6 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.pushButton_6.setObjectName("pushButton_3")
         self.pushButton_6.setMinimumHeight(40)
-        self.pushButton_6.setMinimumWidth(100)
+        self.pushButton_6.setMinimumWidth(120)
         self.pushButton_6.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_6.clicked.connect(self.on_button_6_clicked)
         self.horizontalLayout.addWidget(self.pushButton_6)
@@ -92,23 +98,20 @@ class Ui_MainWindow(object):
         self.pushButton_7.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.horizontalLayout.addWidget(self.pushButton_7)
 
-        # 添加一个刷新的按钮，这个按钮点击后会刷新所有的子元素
-        self.button = QPushButton("Refresh")
-        self.button.clicked.connect(self.webEngineView.reload)
-        self.horizontalLayout.addWidget(self.button)
-
         self.pushButton_8 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.pushButton_8.setObjectName("pushButton_3")
         self.pushButton_8.clicked.connect(self.on_button_8_clicked)
         self.pushButton_8.setMinimumHeight(40)
         self.pushButton_8.setMinimumWidth(100)
+        self.pushButton_8.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.horizontalLayout.addWidget(self.pushButton_8)
 
         self.pushButton_9 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.pushButton_9.setObjectName("pushButton_3")
         self.pushButton_9.clicked.connect(self.on_button_9_clicked)
         self.pushButton_9.setMinimumHeight(40)
-        self.pushButton_9.setMinimumWidth(100)
+        self.pushButton_9.setMinimumWidth(120)
+        self.pushButton_9.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.horizontalLayout.addWidget(self.pushButton_9)
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -126,11 +129,11 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "兴趣分布"))
         self.pushButton_3.setText(_translate("MainWindow", "地区分布"))
         self.pushButton_4.setText(_translate("MainWindow", "需求图谱"))
-        self.pushButton_5.setText(_translate("MainWindow", "人群分布—性别"))
-        self.pushButton_6.setText(_translate("MainWindow", "人群分布—年龄"))
-        self.pushButton_7.setText(_translate("MainWindow", "兴趣分布—TGI"))
+        self.pushButton_5.setText(_translate("MainWindow", "人群分布性别"))
+        self.pushButton_6.setText(_translate("MainWindow", "人群分布年龄"))
+        self.pushButton_7.setText(_translate("MainWindow", "兴趣分布TGI"))
         self.pushButton_8.setText(_translate("MainWindow", "资讯关注"))
-        self.pushButton_9.setText(_translate("MainWindow", "兴趣分布—RATE"))
+        self.pushButton_9.setText(_translate("MainWindow", "兴趣分布RATE"))
 
 
     def on_button_1_clicked(self):
